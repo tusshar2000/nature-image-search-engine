@@ -30,11 +30,11 @@ def index():
         query = fe.extract(img)
         dists = np.linalg.norm(features - query, axis=1)  # Do search
         ids = np.argsort(dists)[:30] # Top 30 results
-        scores = [(dists[id], img_paths[id]) for id in ids]
+        result_images = [img_paths[id] for id in ids]
 
         return render_template('index.html',
                                query_path=uploaded_img_path,
-                               scores=scores)
+                               result_images = result_images)
     else:
         return render_template('index.html')
 
