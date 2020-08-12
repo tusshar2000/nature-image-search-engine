@@ -5,7 +5,7 @@
         <div class="container" style="text-align: center">
             <h1 style="text-align:center">Nature Image search engine</h1>
             <form method="POST" enctype="multipart/form-data">
-                <input type="file" name="query_img" style="margin:0px 425px ; display:block;"/><br>
+                <input type="file" name="query_img" style="margin:10px 425px ; display:block;"/>
                 <input type="submit">
             </form>
             <h2 style="text-align:center">Query:</h2>
@@ -13,9 +13,9 @@
             <img src="{{ query_path }}" width="300px">
             {% endif %}
             <h2 style="text-align:center">Results:</h2>
-            {% for score in scores %}
+            {% for image in result_images %}
             <figure style="float: left; margin-left: 35px; margin-bottom: 20px;">
-                <img src="{{ score[1] }}" height="200px">
+                <img src="{{ image }}" height="200px">
                 
             </figure>
             {% endfor %}
