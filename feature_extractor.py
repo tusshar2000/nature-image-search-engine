@@ -10,15 +10,16 @@ class FeatureExtractor:
         # include_top --> whether to include the fully-connected layer at the top of the network.
         res_conv =  MobileNet(weights='imagenet',include_top=False)
         
-	    #global spatial average pooling layer
+	#global spatial average pooling layer
         x = res_conv.output 
         x = GlobalAveragePooling2D()(x)
 
-	    #fully-connected layer
+	#fully-connected layer
         x = Dense(1024, activation='relu')(x)
 	
-	    #we have 6 classes.
-	    #{0:'building',1:'forest',2:'glacier',3:'mountain',4:'sea',5:'street'}
+	#we have 6 classes.
+	#{0:'building',1:'forest',2:'glacier',3:'mountain',4:'sea',5:'street'}
+	#logistic layer.
         predictions = Dense(6, activation='softmax')(x) 
 
         # this is the model we will train
@@ -27,8 +28,8 @@ class FeatureExtractor:
         self.model.load_weights("weights.h5") 
         for layer in self.model.layers:
             print(layer.name)
+	
         #Here I want the output of the last layer of MobileNet and not my trained model
-        #because I don't 
         self.model = Model(inputs=res_conv.input, outputs=self.model.get_layer('dense_1').output)
         self.model._make_predict_function()
         
