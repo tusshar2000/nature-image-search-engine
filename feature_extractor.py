@@ -29,7 +29,6 @@ class FeatureExtractor:
         for layer in self.model.layers:
             print(layer.name)
 	
-        #Here I want the output of the last layer of MobileNet and not my trained model
         self.model = Model(inputs=res_conv.input, outputs=self.model.get_layer('dense_1').output)
         self.model._make_predict_function()
         
